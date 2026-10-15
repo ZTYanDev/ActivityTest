@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="15dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/second_show_msg_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="显示数据"
+        android:textColor="#F00"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/second_btn1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="跳转到ThirdActivity"
+        android:textAllCaps="false" />
+</LinearLayout>

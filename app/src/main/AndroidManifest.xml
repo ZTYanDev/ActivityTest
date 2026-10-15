@@ -10,15 +10,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ActivityTest6117_1">
-
         <activity
             android:name=".FirstActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="com.yanzitong.activitytest6117.action.YZT_FIRST" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="com.yanzitong.activitytest6117.category.YZT_FIRST" />
             </intent-filter>
         </activity>
+        <activity android:name=".SecondActivity" />
+        <activity android:name=".ThirdActivity" />
     </application>
 
 </manifest>
