@@ -19,4 +19,11 @@
         android:layout_height="wrap_content"
         android:text="跳转到ThirdActivity"
         android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/second_btn2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="反馈数据给First"
+        android:textAllCaps="false" />
 </LinearLayout>

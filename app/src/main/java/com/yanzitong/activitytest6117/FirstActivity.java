@@ -11,6 +11,10 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +23,9 @@ import androidx.appcompat.widget.PopupMenu;
 // 组合键：shift + enter
 public class FirstActivity extends AppCompatActivity {
     private static final String TAG = "FirstActivity";
+
+    // step1: 定义contract启动器类对象，初始化放在Activity生命周期的初始阶段
+    ActivityResultLauncher mActivityResultLauncher;
 
     // 先声明（变量命名：小驼峰）再使用
     // 全局（成员）变量：m开头
@@ -41,11 +48,27 @@ public class FirstActivity extends AppCompatActivity {
         setContentView(R.layout.first_layout);
         Log.d(TAG, "onCreate: 活动创建成功"); // 组合键2：alter + enter
 
+        // step2: 初始化启动器类对象
+        mActivityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {  // 触发要求：SecondActivity销毁
+                    @Override
+                    public void onActivityResult(ActivityResult o) {
+                        if (o.getResultCode() == RESULT_OK && o.getData() != null) {
+                            Intent intent = o.getData();
+                            String msgBackFromSecond = intent.getStringExtra("second_backto_first");
+                            Log.d(TAG, "收到Second反馈的数据：" + msgBackFromSecond);
+                        }
+                    }
+                });
+        // step3: 适当的时候启动启动器类
+
         mFirstBtn4 = findViewById(R.id.first_btn4);
         mFirstBtn4.setOnClickListener(v -> {
             // Activity之间的跳转——显式Intent
             Intent intent = new Intent(FirstActivity.this, SecondActivity.class);
-            startActivity(intent);
+            intent.putExtra("first_to_second", "Hello, second! I'm first! Are you OK? 6117");
+            mActivityResultLauncher.launch(intent);
+//            startActivity(intent);
         });
 
         mFirstBtn3 = findViewById(R.id.first_btn3);

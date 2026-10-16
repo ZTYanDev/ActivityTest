@@ -27,4 +27,13 @@
         android:layout_marginTop="50dp"
         android:text="打开拨号界面"
         android:textAllCaps="false" />
+
+    <TextView
+        android:id="@+id/third_show_msg_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="显示数据"
+        android:textColor="#F00"
+        android:textSize="18sp" />
 </LinearLayout>
